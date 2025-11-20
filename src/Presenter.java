@@ -63,18 +63,19 @@ public class Presenter {
     // Overridden methods
     @Override
     public String toString() {
-        return "Presenter{" +
-                "name='" + name + '\'' +
+        return  "name='" + name + '\'' +
                 ", category='" + categoryPresenting + '\'' +
                 ", co-presenter='" + coPresenter + '\'' +
                 ", scheduled time=" + scheduledTime +
-                ", has rehearsed=" + hasRehearsed +
-                '}';
+                ", has rehearsed=" + hasRehearsed
+                ;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof Presenter presenter)) return false;
-        return hasRehearsed == presenter.hasRehearsed && Objects.equals(name, presenter.name) && Objects.equals(categoryPresenting, presenter.categoryPresenting) && Objects.equals(coPresenter, presenter.coPresenter) && Objects.equals(scheduledTime, presenter.scheduledTime);
+        if (this == o) return true;
+        if (!(o instanceof Presenter)) return false;
+        Presenter obj = (Presenter) o;
+        return this.name.equals(obj.name) && this.categoryPresenting.equals(obj.categoryPresenting);
     }
 }

@@ -1,5 +1,4 @@
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 public class OscarsEvent {
     // Data fields
@@ -65,19 +64,19 @@ public class OscarsEvent {
 
     @Override
     public String toString() {
-        return "OscarsEvent{" +
-                "name='" + name + '\'' +
+        return  "name='" + name + '\'' +
                 ", venue='" + venue + '\'' +
                 ", host='" + host + '\'' +
                 ", duration=" + duration +
-                ", date and time=" + dateTime +
-                '}';
+                ", date and time=" + dateTime
+                ;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof OscarsEvent that)) return false;
-        return duration == that.duration && Objects.equals(name, that.name) && Objects.equals(venue, that.venue) && Objects.equals(host, that.host) && Objects.equals(dateTime, that.dateTime);
-    } // I used intellij to automatically generate the equals method
-
+        if (this == o) return true;
+        if (!(o instanceof OscarsEvent)) return false;
+        OscarsEvent obj = (OscarsEvent) o;
+        return this.name.equals(obj.name);
+    }
 }

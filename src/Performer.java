@@ -63,18 +63,19 @@ public class Performer {
     // Overridden methods
     @Override
     public String toString() {
-        return "Performer{" +
-                "name='" + name + '\'' +
+        return  "name='" + name + '\'' +
                 ", performance type='" + performanceType + '\'' +
                 ", song title='" + songTitle + '\'' +
                 ", duration in minutes=" + durationMinutes +
-                ", scheduled time=" + scheduledTime +
-                '}';
+                ", scheduled time=" + scheduledTime
+                ;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof Performer performer)) return false;
-        return durationMinutes == performer.durationMinutes && Objects.equals(name, performer.name) && Objects.equals(performanceType, performer.performanceType) && Objects.equals(songTitle, performer.songTitle) && Objects.equals(scheduledTime, performer.scheduledTime);
+        if (this == o) return true;
+        if (!(o instanceof Performer)) return false;
+        Performer obj = (Performer) o;
+        return this.name.equals(obj.name) && this.songTitle.equals(obj.songTitle);
     }
 }

@@ -62,18 +62,19 @@ public class Nominee {
     // Overridden methods
     @Override
     public String toString() {
-        return "Nominee{" +
-                "name='" + name + '\'' +
+        return "name='" + name + '\'' +
                 ", category='" + category + '\'' +
                 ", movie title='" + movieTitle + '\'' +
                 ", is winner=" + isWinner +
-                ", year nominated=" + yearNominated +
-                '}';
+                ", year nominated=" + yearNominated
+                ;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof Nominee nominee)) return false;
-        return isWinner == nominee.isWinner && yearNominated == nominee.yearNominated && Objects.equals(name, nominee.name) && Objects.equals(category, nominee.category) && Objects.equals(movieTitle, nominee.movieTitle);
+        if (this == o) return true;
+        if (!(o instanceof Nominee)) return false;
+        Nominee obj = (Nominee) o;
+        return this.name.equals(obj.name) && this.category.equals(obj.category);
     }
 }
