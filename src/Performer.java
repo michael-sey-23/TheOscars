@@ -8,6 +8,7 @@ public class Performer {
     private String songTitle;
     private int durationMinutes;
     private LocalTime scheduledTime;
+    public static int performerCounter = 0;
 
     // Setters
     public void setName(String name) {
@@ -58,6 +59,11 @@ public class Performer {
         setSongTitle(songTitle);
         setDurationMinutes(durationMinutes);
         setScheduledTime(scheduledTime);
+        performerCounter += 1;
+    }
+
+    public Performer(){
+        performerCounter += 1;
     }
 
     // Overridden methods

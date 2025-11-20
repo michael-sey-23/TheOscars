@@ -7,6 +7,7 @@ public class Nominee {
     private String movieTitle;
     private boolean isWinner;
     private int yearNominated;
+    public static int nomineeCounter = 0;
 
     // Setters
     public void setName(String name) {
@@ -57,6 +58,11 @@ public class Nominee {
         setMovieTitle(movieTitle);
         setWinner(isWinner);
         setYearNominated(yearNominated);
+        nomineeCounter += 1;
+    }
+
+    public Nominee(){
+        nomineeCounter += 1;
     }
 
     // Overridden methods

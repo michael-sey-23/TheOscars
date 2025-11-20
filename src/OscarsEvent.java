@@ -7,6 +7,7 @@ public class OscarsEvent {
     private String host;
     private int duration;
     private LocalDateTime dateTime;
+    private static int eventCounter = 0;
 
 
     // Setters
@@ -58,6 +59,11 @@ public class OscarsEvent {
         setHost(host);
         setDuration(duration);
         setDateTime(dateTime);
+        eventCounter += 1;
+    }
+
+    public OscarsEvent(){
+        eventCounter += 1;
     }
 
     // Overridden methods

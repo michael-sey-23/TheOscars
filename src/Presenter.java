@@ -8,6 +8,7 @@ public class Presenter {
     private String coPresenter;
     private LocalTime scheduledTime;
     private boolean hasRehearsed;
+    private static int presenterCounter = 0;
 
     // Setters
     public void setName(String name) {
@@ -58,6 +59,11 @@ public class Presenter {
         setCoPresenter(coPresenter);
         setScheduledTime(scheduledTime);
         setHasRehearsed(hasRehearsed);
+        presenterCounter += 1;
+    }
+
+    public Presenter(){
+        presenterCounter += 1;
     }
 
     // Overridden methods
