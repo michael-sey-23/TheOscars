@@ -71,5 +71,6 @@ public class Main {
             System.out.println("Nominee " + (i + 1) + ": " + nominees[i]);
             System.out.println();
         }
+
     }
 }

@@ -1,13 +1,14 @@
 import java.time.LocalTime;
-import java.util.Objects;
 
-public class Presenter {
+public class Presenter implements Participant, Registerable, Schedulable {
     // Data fields
     private String name;
     private String categoryPresenting;
     private String coPresenter;
     private LocalTime scheduledTime;
     private boolean hasRehearsed;
+    private LocalTime checkInTime;
+    private LocalTime checkOutTime;
     private static int presenterCounter = 0;
 
     // Setters
@@ -23,6 +24,7 @@ public class Presenter {
         this.coPresenter = coPresenter;
     }
 
+    @Override
     public void setScheduledTime(LocalTime scheduledTime) {
         this.scheduledTime = scheduledTime;
     }
@@ -32,6 +34,7 @@ public class Presenter {
     }
 
     // Getters
+    @Override
     public String getName() {
         return name;
     }
@@ -44,6 +47,7 @@ public class Presenter {
         return coPresenter;
     }
 
+    @Override
     public LocalTime getScheduledTime() {
         return scheduledTime;
     }
@@ -83,5 +87,58 @@ public class Presenter {
         if (!(o instanceof Presenter)) return false;
         Presenter obj = (Presenter) o;
         return this.name.equals(obj.name) && this.categoryPresenting.equals(obj.categoryPresenting);
+    }
+
+    // Participant Interface methods
+    @Override
+    public String getRole() {
+        return "Presenter";
+    }
+
+    @Override
+    public void displayInfo(){
+        System.out.println("Presenter info: " + this.toString());
+    }
+
+    // Registerable Interface methods
+    @Override
+    public boolean checkInParticipant() {
+        if (checkInTime != null) {
+            return false; // Already checked in
+        }
+        checkInTime = LocalTime.now(); // Set current time as check-in time
+        return true; // Successfully checked in
+    }
+
+    @Override
+    public boolean checkoutParticipant() {
+        if (checkInTime == null) {
+            return false; // Can't check out if not checked in
+        }
+        if (checkOutTime != null) {
+            return false; // Already checked out
+        }
+        checkOutTime = LocalTime.now(); // Set current time as check-out time
+        return true; // Successfully checked out
+    }
+
+    @Override
+    public void setCheckInTime(LocalTime checkInTime) {
+        this.checkInTime = checkInTime;
+    }
+
+    @Override
+    public void setCheckOutTime(LocalTime checkOutTime) {
+        this.checkOutTime = checkOutTime;
+    }
+
+    @Override
+    public LocalTime getCheckInTime() {
+        return checkInTime;
+    }
+
+    @Override
+    public LocalTime getCheckOutTime() {
+        return checkOutTime;
     }
 }
