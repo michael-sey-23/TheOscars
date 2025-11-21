@@ -155,4 +155,61 @@ public class OscarsEventTest {
         assertFalse(presenter.isHasRehearsed());
     }
 
+    // Test instanceof for Participant interface
+    @Test
+    public void testParticipantInterface() {
+        Nominee nominee = new Nominee("Cillian Murphy", "Best Actor", "Oppenheimer", true, 2024);
+        Performer performer = new Performer("Billie Eilish", "Live Performance", "What Was I Made For?", 4, LocalTime.of(20, 15));
+        Presenter presenter = new Presenter("Dwayne Johnson", "Best Visual Effects", "Emily Blunt", LocalTime.of(19, 45), true);
+
+        assertTrue(nominee instanceof Participant);
+        assertTrue(performer instanceof Participant);
+        assertTrue(presenter instanceof Participant);
+
+        assertEquals("Nominee", nominee.getRole());
+        assertEquals("Performer", performer.getRole());
+        assertEquals("Presenter", presenter.getRole());
+    }
+
+    // Test instanceof for Registerable interface
+    @Test
+    public void testRegisterableInterface() {
+        Nominee nominee = new Nominee("Emma Stone", "Best Actress", "Poor Things", true, 2024);
+        Performer performer = new Performer("Ryan Gosling", "Musical Number", "I'm Just Ken", 5, LocalTime.of(21, 30));
+        Presenter presenter = new Presenter("Margot Robbie", "Best Director", "Ryan Gosling", LocalTime.of(21, 0), true);
+
+        assertTrue(nominee instanceof Registerable);
+        assertTrue(performer instanceof Registerable);
+        assertTrue(presenter instanceof Registerable);
+
+        // Test check-in functionality
+        assertTrue(nominee.checkInParticipant());
+        assertFalse(nominee.checkInParticipant()); // Already checked in
+        assertNotNull(nominee.getCheckInTime());
+
+        assertTrue(performer.checkInParticipant());
+        assertTrue(performer.checkoutParticipant());
+        assertNotNull(performer.getCheckOutTime());
+    }
+
+    // Test instanceof for Schedulable interface
+    @Test
+    public void testSchedulableInterface() {
+        LocalTime time1 = LocalTime.of(20, 15);
+        LocalTime time2 = LocalTime.of(21, 30);
+
+        Performer performer = new Performer("Billie Eilish", "Live Performance", "What Was I Made For?", 4, time1);
+        Presenter presenter = new Presenter("Dwayne Johnson", "Best Visual Effects", "Emily Blunt", time2, true);
+
+        assertTrue(performer instanceof Schedulable);
+        assertTrue(presenter instanceof Schedulable);
+
+        assertEquals(time1, performer.getScheduledTime());
+        assertEquals(time2, presenter.getScheduledTime());
+
+        LocalTime newTime = LocalTime.of(22, 0);
+        performer.setScheduledTime(newTime);
+        assertEquals(newTime, performer.getScheduledTime());
+    }
+
 }
